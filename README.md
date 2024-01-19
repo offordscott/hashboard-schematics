@@ -10,8 +10,6 @@ It offers an advanced interface for interacting with mining schematics, providin
 ## Features
 - Interactive Schematic Display
 - Detailed Component Information and Metadata
-- User Authentication and Access Control
-- Real-time Data Processing
 - Secure Data Handling with Encryption and Obfuscation Techniques
 
 ## Getting Started
