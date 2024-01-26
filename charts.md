@@ -3,7 +3,7 @@
 ### SCM Interactive Miner Schematic
 [Readme](README.md) |
 [Charts](charts.md)
-### Timelines / Gannt Charts
+### Timelines / Gantt Charts
 _(est.)_
 ```mermaid
 gantt
