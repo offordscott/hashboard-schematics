@@ -1,9 +1,9 @@
 <img width="15%" src="src/assets/logo.png">
-## Hashboard Schematics
+
 ### SCM Interactive Miner Schematic
 [Readme](README.md) |
-[Roadmap](ROADMAP.md)
-### Timelines / Gannt Charts
+[Charts](charts.md)
+### Timelines / Gantt Charts
 _(est.)_
 ```mermaid
 gantt
