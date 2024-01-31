@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Image Map</title>
+    <script src="https://code.jquery.com/jquery-1.6.3.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#wrapper').css({'width':$('#wrapper img').width(), 'height':$('#wrapper img').height()});
+            var tooltipDirection;
+            $(".pin").each(function(i) {
+                tooltipDirection = $(this).hasClass('pin-down') ? 'tooltip-down' : 'tooltip-up';
+                $("#wrapper").append("<div style='left:"+$(this).data('xpos')+"px;top:"+$(this).data('ypos')+"px' class='" + tooltipDirection + "'>" +
+                    "<div class='tooltip'>" + $(this).html() + "</div></div>");
+            });
+            $('.tooltip-up, .tooltip-down').mouseenter(function(){
+                $(this).children('.tooltip').fadeIn(100);
+            }).mouseleave(function(){
+                $(this).children('.tooltip').fadeOut(100);
+            });
+        });
+    </script>
+    <style>
+        #wrapper {
+            position: relative;
+            margin: auto;
+            border: 1px solid #fafafa;
+            box-shadow: 0 3px 3px rgba(0,0,0,.5);
+        }
+        .pin { display: none; }
+        .tooltip-up, .tooltip-down {
+           position: absolute;
+			background: url(/static/arrow-up-down.png);
+			width: 36px;
+			height: 52px;
+        }
+        .tooltip-down { background-position: 0 -52px; }
+        .tooltip {
+            display: none;
+            position: absolute;
+            min-width: 400px;
+            padding: 15px;
+            background: #fff1d3;
+            border-radius: 5px;
+            box-shadow: 0 3px 0 rgba(0,0,0,.7);
+            z-index: 999;
+
+        }
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            border: 10px solid transparent;
+        }
+        .tooltip-down .tooltip::after {
+            bottom: -10px;
+            top: auto;
+            border-top-color: #ffdb90;
+        }
+    </style>
+</head><body>
+<div id="wrapper">
+    <img src="/static/example.png" alt="Example Image">
+
+    {% for component in components %}
+        <div class="pin" data-xpos="{{ component.x }}" data-ypos="{{ component.y }}">
+            <h2>{{ component.name }}</h2>
+            <ul>
+                <li><b>Details:</b> {{ component.details }}</li>
+                <li><b>Coords:</b> {{ component.x }},{{ component.y }},{{ component.width }},{{ component.height }}</li>
+                {% if component.subcomponents %}
+                    {% for sub_name, sub_detail in component.subcomponents.items %}
+                        <li><b>{{ sub_name }}:</b> {{ sub_detail.details }}</li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+    {% endfor %}
+</div>
+</body>
+
+</html>

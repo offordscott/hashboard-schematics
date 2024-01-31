@@ -1,0 +1,26 @@
+ASIC_Chip:
+  details: "Model: BM1387; Quantity Per Board: 60; Performance: 0.098 J/GH."
+  coords: "100,150,50,20"
+  subcomponents:
+    ASIC_Subcomponent1:
+      details: "Subcomponent detail"
+      coords: "110,160,20,10"
+    ASIC_Subcomponent2:
+      details: "Another detail"
+      coords: "120,170,15,5"
+
+Cooling_Fan:
+  details: "Type: Axial; Quantity: 2; Airflow: 210 CFM."
+  coords: "200,300,60,60"
+  subcomponents:
+    Fan_Blade:
+      details: "Blade details"
+      coords: "210,310,30,30"
+
+Power_Supply_Unit:
+  details: "Model: APW3++; Efficiency: 93%; Output: 1600W."
+  coords: "300,100,100,40"
+  subcomponents:
+    PSU_Capacitor:
+      details: "Capacitor specs"
+      coords: "310,110,10,10"

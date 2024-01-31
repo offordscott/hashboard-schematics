@@ -1,6 +1,8 @@
 <img width="15%" src="src/assets/logo.png">
 
-# SCM Interactive Miner Schematic
+# Hashboard Schematics
+## SCM Interactive Miner Schematic
+
 [Charts](charts.md) | [Roadmap](ROADMAP.md)
 ## Overview
 This project aims to develop an interactive schematic interface that provides detailed information about miner components in a user-friendly manner.

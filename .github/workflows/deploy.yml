@@ -1,0 +1,39 @@
+name: Deploy Application
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up SSH Key
+      uses: webfactory/ssh-agent@v0.5.1
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Deploy to Server
+      run: |
+        if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+          HOSTNAME=$PROD_HOSTNAME
+          IP_ADDRESS=$PROD_IP
+        else
+          HOSTNAME=$DEV_HOSTNAME
+          IP_ADDRESS=$DEV_IP
+        fi
+
+        echo "Deploying to $HOSTNAME at $IP_ADDRESS"
+        ssh -o "StrictHostKeyChecking=no" user@$IP_ADDRESS "cd /path/to/$HOSTNAME && git pull origin ${GITHUB_REF##*/} && ./deploy.sh"
+      env:
+        PROD_HOSTNAME: ${{ secrets.PROD_HOSTNAME }}
+        PROD_IP: ${{ secrets.PROD_IP }}
+        DEV_HOSTNAME: ${{ secrets.DEV_HOSTNAME }}
+        DEV_IP: ${{ secrets.DEV_IP }}
