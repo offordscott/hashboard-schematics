@@ -23,9 +23,11 @@ jobs:
     - name: Deploy to Server
       run: |
         if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+          echo "Deploying to production!"
           HOSTNAME=$PROD_HOSTNAME
           IP_ADDRESS=$PROD_IP
         else
+            echo "Deploying to development!"
           HOSTNAME=$DEV_HOSTNAME
           IP_ADDRESS=$DEV_IP
         fi

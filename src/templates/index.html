@@ -44,6 +44,12 @@
             border-radius: 5px;
             box-shadow: 0 3px 0 rgba(0,0,0,.7);
             z-index: 999;
+			background: -webkit-gradient(linear, left top, left bottom, from(#fff1d3), to(#ffdb90));
+			background: -webkit-linear-gradient(top, #fff1d3, #ffdb90);
+			background: -moz-linear-gradient(top, #fff1d3, #ffdb90);
+			background: -ms-linear-gradient(top, #fff1d3, #ffdb90);
+			background: -o-linear-gradient(top, #fff1d3, #ffdb90);
+			background: linear-gradient(top, #fff1d3, #ffdb90);
 
         }
         .tooltip::after {
@@ -64,9 +70,8 @@
     {% for component in components %}
         <div class="pin" data-xpos="{{ component.x }}" data-ypos="{{ component.y }}">
             <h2>{{ component.name }}</h2>
+            {{ component.details }}
             <ul>
-                <li><b>Details:</b> {{ component.details }}</li>
-                <li><b>Coords:</b> {{ component.x }},{{ component.y }},{{ component.width }},{{ component.height }}</li>
                 {% if component.subcomponents %}
                     {% for sub_name, sub_detail in component.subcomponents.items %}
                         <li><b>{{ sub_name }}:</b> {{ sub_detail.details }}</li>
