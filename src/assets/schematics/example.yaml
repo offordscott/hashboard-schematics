@@ -9,13 +9,36 @@ ASIC_Chip:
 #      details: "Another detail"
 #      coords: "120,170,15,5"
 
-Boost:
+CLOCK_CRYSTAL:
+  details: "This component is the pacemaker of the entire circuit, it generates a 25MHz wave the ASICs use to  communicate and run their calculations."
+  coords: "200,300,60,60"
+LM1134:
+  details: "This tiny chip is a power supply, it supplies 1.8VV to The Domain so that all ASICs in the domain can generate and pass along the 1.8V data signals."
+  coords: "200,300,60,60"
+DSPIC33EP16:
+  details: "'AKA The PIC', the DSPIC33EP16 performs multiple functions, including turning on MOSSFETs and allowing power to flow through the board, monitoring and collection of data from temperature sensors, and monitoring voltage coming from the power supply."
+  coords: "200,300,60,60"
+SGM2036-ADJ:
+  details: "This tiny chip is a power supply, it supplies 0.8VV to The Domain so that all ASICs in the domain can generate and pass along the 0.8V clock signals."
+  coords: "200,300,60,60"
+POWER MOSFET:
+  details: "The MOSFET or Just MOS function as switches, the Control board can send singnals to the Hashboard to turn on and these switches will close, allowing power through the ASICs."
+  coords: "200,300,60,60"
+TMP451:
+  details: "This is a temprature monitoring IC, they 'listen' to the nearest ASIC and report the temprature found."
+  coords: "200,300,60,60"
+MP1517:
   details: "'AKA The Boost', the MP1517 Provides 21 volts to power the LDO's in several of the last domains."
   coords: "200,300,60,60"
- LDO_0V8:
-  details: "This tiny chip is a power supply, it supplies 0.8V to The Domain so that all ASICs in the domain can generate and pass along the 0.8V clock signal."
+24C02:
+  details: "This is the EEPROM, its ancient 1970s technology, it only holds 256 Bytes! but thats pleanty to store  just a few bits of important data, Like ASICs used, Speed(MHz), Serial Number, etc."
   coords: "200,300,60,60"
- PIC:
-  details: "'AKA The PIC', the PIC16C1704 performs multiple functions, including turning on MOSSFETs and allowing power to flow through the board, monitoring and collection of data from temperature sensors, and monitoring voltage coming from the power supply."
+MP2019:
+  details: "This is a special Power Supply, "Fat Boy", it is powered directly by the boost and provides 1.8V to the last domain."
   coords: "200,300,60,60"
+SN74LVC1T45:
+  details: "This is a translator IC its job is to convert the 3.3V sindals into the 1.8V signals used withen nthe Hashboard."
+  coords: "200,300,60,60"
+
+
 
