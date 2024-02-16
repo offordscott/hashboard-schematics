@@ -1,44 +1,35 @@
-ASIC_Chip:
-  details: "Model: BM1387; Quantity Per Board: 60; Performance: 0.098 J/GH."
-  coords: "100,150,50,20"
-#  subcomponents:
-#    ASIC_Subcomponent1:
-#      details: "Subcomponent detail"
-#      coords: "110,160,20,10"
-#    ASIC_Subcomponent2:
-#      details: "Another detail"
-#      coords: "120,170,15,5"
+asic_chip:
+  details: "Manufacturer: Bitmain; Model: BM1387; Quantity Per Board: 60; Performance: 0.098 J/GH."
 
-CLOCK_CRYSTAL:
-  details: "This component is the pacemaker of the entire circuit, it generates a 25MHz wave the ASICs use to  communicate and run their calculations."
-  coords: "200,300,60,60"
-LM1134:
-  details: "This tiny chip is a power supply, it supplies 1.8VV to The Domain so that all ASICs in the domain can generate and pass along the 1.8V data signals."
-  coords: "200,300,60,60"
-DSPIC33EP16:
-  details: "'AKA The PIC', the DSPIC33EP16 performs multiple functions, including turning on MOSSFETs and allowing power to flow through the board, monitoring and collection of data from temperature sensors, and monitoring voltage coming from the power supply."
-  coords: "200,300,60,60"
-SGM2036-ADJ:
-  details: "This tiny chip is a power supply, it supplies 0.8VV to The Domain so that all ASICs in the domain can generate and pass along the 0.8V clock signals."
-  coords: "200,300,60,60"
-POWER MOSFET:
-  details: "The MOSFET or Just MOS function as switches, the Control board can send singnals to the Hashboard to turn on and these switches will close, allowing power through the ASICs."
-  coords: "200,300,60,60"
-TMP451:
-  details: "This is a temprature monitoring IC, they 'listen' to the nearest ASIC and report the temprature found."
-  coords: "200,300,60,60"
-MP1517:
-  details: "'AKA The Boost', the MP1517 Provides 21 volts to power the LDO's in several of the last domains."
-  coords: "200,300,60,60"
-24C02:
-  details: "This is the EEPROM, its ancient 1970s technology, it only holds 256 Bytes! but thats pleanty to store  just a few bits of important data, Like ASICs used, Speed(MHz), Serial Number, etc."
-  coords: "200,300,60,60"
-MP2019:
-  details: "This is a special Power Supply, "Fat Boy", it is powered directly by the boost and provides 1.8V to the last domain."
-  coords: "200,300,60,60"
-SN74LVC1T45:
-  details: "This is a translator IC its job is to convert the 3.3V sindals into the 1.8V signals used withen nthe Hashboard."
-  coords: "200,300,60,60"
+clock_crystal:
+  details: "Generates a 25MHz wave the ASICs use to communicate and run their calculations."
 
+lm1134:
+  details: "Manufacturer: Texas Instruments; Supplies 1.8V to The Domain for 1.8V data signal integrity."
 
+dspic33ep16:
+  details: "Manufacturer: Microchip; Performs multiple functions, including MOSSFET activation, temperature data collection, and power supply voltage monitoring."
 
+sgm2036-adj:
+  details: "Manufacturer: SG Micro; Supplies 0.8V to The Domain for clock signal integrity."
+
+power_mosfet:
+  details: "Functions as switches, allowing power through the ASICs when activated."
+
+tmp451:
+  details: "Manufacturer: Texas Instruments; A temperature monitor IC, reporting temperatures of the nearest ASIC."
+  coords:
+    - 522, 180, 10, 10
+    - 342, 592, 10, 10
+    - 155, 408, 20, 20
+mp1517:
+  details: "Manufacturer: Monolithic Power Systems; Provides 21 volts to power the LDOs in several of the last domains."
+
+24c02:
+  details: "An EEPROM for storing critical data like ASIC configurations and serial numbers."
+
+mp2019:
+  details: "Manufacturer: Monolithic Power Systems; A special Power Supply, known as 'Fat Boy', providing 1.8V to the last domain."
+
+sn74lvc1t45:
+  details: "Manufacturer: Texas Instruments; A translator IC, converting 3.3V signals into 1.8V signals used within the Hashboard."

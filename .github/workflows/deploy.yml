@@ -12,30 +12,34 @@ jobs:
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
 
     steps:
-    - name: Checkout code
+      - name: Install Bash
+        run: apk add --no-cache bash
+
+      - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up SSH Key
-      uses: webfactory/ssh-agent@v0.5.1
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-    - name: Deploy to Server
-      run: |
-        if [ "${{ github.ref }}" == "refs/heads/main" ]; then
-          echo "Deploying to production!"
-          HOSTNAME=$PROD_HOSTNAME
-          IP_ADDRESS=$PROD_IP
-        else
-            echo "Deploying to development!"
-          HOSTNAME=$DEV_HOSTNAME
-          IP_ADDRESS=$DEV_IP
-        fi
-
-        echo "Deploying to $HOSTNAME at $IP_ADDRESS"
-        ssh -o "StrictHostKeyChecking=no" user@$IP_ADDRESS "cd /path/to/$HOSTNAME && git pull origin ${GITHUB_REF##*/} && ./deploy.sh"
+    - name: Setup SSH Key and Deploy
       env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         PROD_HOSTNAME: ${{ secrets.PROD_HOSTNAME }}
         PROD_IP: ${{ secrets.PROD_IP }}
         DEV_HOSTNAME: ${{ secrets.DEV_HOSTNAME }}
         DEV_IP: ${{ secrets.DEV_IP }}
+      run: |
+        mkdir -p ~/.ssh
+        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ github.ref == 'refs/heads/main' ? secrets.PROD_IP : secrets.DEV_IP }} >> ~/.ssh/known_hosts
+
+        if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+          echo "Deploying to production!"
+          HOSTNAME=${{ secrets.PROD_HOSTNAME }}
+          IP_ADDRESS=${{ secrets.PROD_IP }}
+        else
+          echo "Deploying to development!"
+          HOSTNAME=${{ secrets.DEV_HOSTNAME }}
+          IP_ADDRESS=${{ secrets.DEV_IP }}
+        fi
+
+        echo "Deploying to $HOSTNAME at $IP_ADDRESS"
+        ssh -o "StrictHostKeyChecking=no" root@$IP_ADDRESS "cd /home/django/django_project && git pull"
